@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncApi", "1. AsyncApi\AsyncApi\AsyncApi.csproj", "{7C5AFB2F-C676-40C3-9E0D-D602708CC575}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncApi", "AsyncApi\AsyncApi.csproj", "{7C5AFB2F-C676-40C3-9E0D-D602708CC575}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncApi.Benchmark", "1. AsyncApi\AsyncApi.Benchmark\AsyncApi.Benchmark.csproj", "{8C2548CA-7AF2-4E65-A66C-6B9A50332A1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncApi.Benchmark", "AsyncApi.Benchmark\AsyncApi.Benchmark.csproj", "{8C2548CA-7AF2-4E65-A66C-6B9A50332A1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. AsyncApi", "1. AsyncApi", "{7BA6F3B0-805C-4DB9-8A00-02C11DFF5560}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncApi.ThirdPartyApi", "1. AsyncApi\AsyncApi.ThirdPartyApi\AsyncApi.ThirdPartyApi.csproj", "{5BAA8C76-B8CC-461F-AC4A-840AD5BF0F29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncApi.ThirdPartyApi", "AsyncApi.ThirdPartyApi\AsyncApi.ThirdPartyApi.csproj", "{5BAA8C76-B8CC-461F-AC4A-840AD5BF0F29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
