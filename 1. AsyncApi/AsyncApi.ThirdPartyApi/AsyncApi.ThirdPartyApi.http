@@ -1,0 +1,6 @@
+@AsyncApi.ThirdPartyApi_HostAddress = http://localhost:5223
+
+GET {{AsyncApi.ThirdPartyApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
