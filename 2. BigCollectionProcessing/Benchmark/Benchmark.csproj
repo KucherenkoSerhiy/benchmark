@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BenchmarkDotNet" Version="0.13.9" />
+      <PackageReference Include="BenchmarkDotNet.Annotations" Version="0.13.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\2. BigCollectionProcessing\Application\Application.csproj" />
+    </ItemGroup>
+
+</Project>
