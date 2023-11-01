@@ -1,0 +1,6 @@
+@ThirdParty_HostAddress = http://localhost:5105
+
+GET {{ThirdParty_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
