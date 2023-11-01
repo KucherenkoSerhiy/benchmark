@@ -6,12 +6,11 @@ namespace Persistence;
 public class EntryContext : DbContext
 {
     public DbSet<Entry> Entries { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite("Data Source=benchmark.db");
-    }
     
+    public EntryContext(DbContextOptions<EntryContext> options) : base(options)
+    {
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new EntryConfiguration());

@@ -2,27 +2,22 @@
 
 namespace Application;
 
-public class EntryHandler
+public class EntryHandler(IEntryRepository entryRepository)
 {
-    private readonly IEntryRepository entryRepository;
-
-    public EntryHandler(IEntryRepository entryRepository)
-    {
-        this.entryRepository = entryRepository;
-    }
-
     public async Task ProcessEntries(IEnumerable<string> entries)
     {
         const int batchSize = 1000; // Determine the right batch size based on system's capabilities and testing.
         foreach (var batch in entries.Batch(batchSize))
         {
-            var tasks = batch.Select(async entry =>
+            var entriesToSave = new List<Entry>(batchSize);
+            var tasks = new List<Task>(batchSize);
+            foreach (var entry in batch)
             {
-                await ProcessEntryAsync(entry);
-                var entryObj = new Entry(entry);
-                entryRepository.AddEntryAsync(entryObj); 
-            });
+                tasks.Add(ProcessEntryAsync(entry));
+                entriesToSave.Add(new Entry(entry));
+            }
             await Task.WhenAll(tasks);
+            await entryRepository.AddEntriesAsync(entriesToSave);
             await entryRepository.SaveChangesAsync();
         }
     }

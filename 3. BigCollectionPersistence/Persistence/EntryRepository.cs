@@ -11,9 +11,9 @@ public class EntryRepository : IEntryRepository
         this.context = context;
     }
 
-    public void AddEntryAsync(Entry entry)
+    public async Task AddEntriesAsync(IEnumerable<Entry> entries)
     {
-        context.Entries.Add(entry);
+        await context.Entries.AddRangeAsync(entries);
     }
     
     public async Task SaveChangesAsync()
