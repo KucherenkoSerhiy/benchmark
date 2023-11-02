@@ -1,36 +1,45 @@
-﻿using Application;
+﻿using System.Text;
+using System.Text.Json;
 using BenchmarkDotNet.Attributes;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace Benchmark;
 
 [MemoryDiagnoser]
 public class EntryHandlerBenchmark
 {
-    private EntryHandler handler;
-    private List<string> entries;
+    private HttpClient client;
+    private string requestBody;
 
-    [Params(1000, 10000, 20000)]
-    public int NumEntries;
+    [Params(1000, 10000, 20000)] public int NumEntries;
 
-    private EntryContext entryContext;
 
     [GlobalSetup]
     public void Setup()
     {
-        entryContext = new EntryContext();
-        handler = new EntryHandler(new EntryRepository(entryContext));
-        entries = Enumerable.Range(0, NumEntries).Select(i => $"Entry {i}").ToList();
+        client = new HttpClient
+        {
+            BaseAddress = new Uri("http://localhost:5012")
+        };
+
+        var entries = Enumerable.Range(0, NumEntries).Select(i => $"Entry {i}").ToList();
+        requestBody = JsonSerializer.Serialize(entries);
     }
 
     [Benchmark]
-    public Task ProcessEntriesTest() => handler.ProcessEntries(entries);
-    
-    [IterationCleanup]
-    public void IterationCleanup()
+    public async Task ProcessEntriesTest()
     {
-        entryContext.Database.ExecuteSqlRaw("TRUNCATE TABLE Entries");
-        entryContext.SaveChanges();
+        var content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+        var response = await client.PostAsync("/entries", content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new InvalidOperationException("HTTP request for posting entries failed: " + response.StatusCode);
+        }
+    }
+
+    [GlobalCleanup]
+    public void Cleanup()
+    {
+        client?.Dispose();
     }
 }
