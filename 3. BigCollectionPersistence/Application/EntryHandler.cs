@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net;
+using System.Net.Http.Json;
 
 namespace Application;
 
@@ -37,6 +38,7 @@ public class EntryHandler(IEntryRepository entryRepository)
     private static async Task CallThirdPartyAsync(string entry)
     {
         using HttpClient client = new();
-        await client.PostAsJsonAsync("http://localhost:5105/dummy", entry);
+        var response = await client.PostAsJsonAsync("http://localhost:5105/dummy", entry);
+        response.EnsureSuccessStatusCode();
     }
 }

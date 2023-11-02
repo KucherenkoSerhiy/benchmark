@@ -9,7 +9,7 @@ public class DummyEndpoints: ICarterModule
         app.MapPost("/dummy", Delay200Milliseconds);
     }
 
-    private static async Task<IResult> Delay200Milliseconds()
+    private async Task<IResult> Delay200Milliseconds()
     {
         await Task.Delay(200);
         return Results.Ok("Task delayed successfully! :)");
