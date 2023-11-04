@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "..\2. BigCollectionProcessing\Application\Application.csproj", "{02F29413-D444-4FCC-9EF9-B698F40494E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{02F29413-D444-4FCC-9EF9-B698F40494E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThirdParty", "ThirdParty\ThirdParty.csproj", "{5B75B48B-005C-4F71-88A6-B4326AAB4083}"
 EndProject
