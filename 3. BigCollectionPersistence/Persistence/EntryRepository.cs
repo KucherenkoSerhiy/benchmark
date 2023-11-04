@@ -2,15 +2,8 @@ using Application;
 
 namespace Persistence;
 
-public class EntryRepository : IEntryRepository
+public class EntryRepository(EntryContext context) : IEntryRepository
 {
-    private readonly EntryContext context;
-
-    public EntryRepository(EntryContext context)
-    {
-        this.context = context;
-    }
-
     public async Task AddEntriesAsync(IEnumerable<Entry> entries)
     {
         await context.Entries.AddRangeAsync(entries);
