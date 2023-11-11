@@ -1,8 +1,6 @@
-﻿using System.Net.Http.Json;
+﻿namespace Application;
 
-namespace Application;
-
-public class EntryHandler(IEntryRepository entryRepository)
+public class EntryHandler(IEntryRepository entryRepository, IThirdPartyClient thirdPartyClient)
 {
     public async Task ProcessEntries(IEnumerable<string> entries)
     {
@@ -26,18 +24,11 @@ public class EntryHandler(IEntryRepository entryRepository)
     {
         try
         {
-            await CallThirdPartyAsync(entry);
+            await thirdPartyClient.CallThirdPartyAsync(entry);
         }
         catch (Exception ex)
         {
             // Handle or log exceptions as required.
         }
-    }
-
-    private static async Task CallThirdPartyAsync(string entry)
-    {
-        using HttpClient client = new();
-        var response = await client.PostAsJsonAsync("http://localhost:5105/dummy", entry);
-        response.EnsureSuccessStatusCode();
     }
 }

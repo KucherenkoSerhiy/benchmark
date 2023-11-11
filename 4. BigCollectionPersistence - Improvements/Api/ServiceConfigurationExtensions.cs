@@ -14,5 +14,11 @@ public static class ServiceConfigurationExtensions
             options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
         builder.Services.AddScoped<IEntryRepository, EntryRepository>();
         builder.Services.AddScoped<EntryHandler>();
+        builder.Services.AddSingleton<IThirdPartyClient, ThirdPartyClient>();
+        builder.Services.AddHttpClient("ThirdPartyApi", client =>
+        {
+            client.BaseAddress = new Uri(builder.Configuration["BaseUrl"] ??
+                                         throw new InvalidOperationException("BaseUrl not specified"));
+        });
     }
 }

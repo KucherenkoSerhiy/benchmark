@@ -1,6 +1,4 @@
-﻿Certainly, I'll revise the document to reflect these points.
-
-# 3. EF Core Integration: HTTP-triggered Entry Processing
+﻿# 3. EF Core Integration: HTTP-triggered Entry Processing
 
 **Given**:
 - A REST API that processes a batch of entries using Entity Framework Core for database persistence.

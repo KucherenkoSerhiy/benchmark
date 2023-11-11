@@ -1,6 +1,4 @@
-﻿Certainly, I'll revise the document to reflect these points.
-
-# 3. EF Core Integration: HTTP-triggered Entry Processing
+﻿# 4. Improvements
 
 **Given**:
 - A REST API that processes a batch of entries using Entity Framework Core for database persistence.
@@ -13,7 +11,7 @@
 - Entity Framework Core CLI tools installed.
 
 ## Installation
-
+[big_collection_persistence.md](..%2F3.%20BigCollectionPersistence%2Fbig_collection_persistence.md)
 Before running the benchmarks, install the necessary tool:
 
 ```shell
@@ -43,11 +41,23 @@ Assuming you are in the root path of the solution, follow these steps:
 
 ## Benchmarks
 
+Before:
+
 | Method             | NumEntries |        Mean |    Error |   StdDev | Median     | Allocated  |
 |--------------------|------------|------------:|---------:|---------:|------------:|-----------:|
 | PostEntries        | 1000       |    930.1 ms |  72.06 ms| 212.5 ms |  1,047.0 ms |  15.56 KB  |
 | PostEntries        | 10000      |  7,887.6 ms | 434.49 ms|1,281.1 ms|  7,971.4 ms | 129.73 KB  |
 | PostEntries        | 20000      | 17,843.3 ms | 537.05 ms|1,566.6 ms| 18,041.1 ms | 266.55 KB  |
+
+After using HttpClientFactory:
+
+| Method             | NumEntries | Mean     | Error    | StdDev   | Allocated |
+|--------------------|------------|----------|----------|----------|-----------|
+| ProcessEntriesTest | 1000       | 1.373 s  | 0.0394 s | 0.1110 s | 15.47 KB  |
+| ProcessEntriesTest | 10000      | 13.531 s | 0.2678 s | 0.5590 s | 129.83 KB |
+| ProcessEntriesTest | 20000      | 26.985 s | 0.5385 s | 0.8541 s | 267.46 KB |
+
+There seem to be an increase in the Mean execution time compared to the previous results.
 
 ## Observations
 
